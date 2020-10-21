@@ -1,4 +1,4 @@
-import pygame
+import pygame, pygame.surface
 from needs.Text import Text
 from needs.Button import Button
 
@@ -7,6 +7,8 @@ class MainWindow:
         self.backgroundSize = (800, 600)
         self.backgroundColor = (0, 0, 0)
         self.title = "Codename TR"
+        self.startButtonX = 350
+        self.startButtonY = 300
 
         # Initialize pygame
         pygame.init()
@@ -21,6 +23,9 @@ class MainWindow:
                 if event.type == pygame.QUIT:
                     running = False
             
+            # initiate mouse
+            mouse = pygame.mouse.get_pos()
+
             screen = pygame.display.set_mode(self.backgroundSize)
             pygame.display.set_caption(self.title)
 
@@ -30,13 +35,19 @@ class MainWindow:
             background.fill(self.backgroundColor)
 
             # print title
-            titleText = Text("Codename Tr", (225, 150))
+            titleText = Text("Codename Tr", (225, 150), 72)
 
             screen.blit(background, (0, 0))
             screen.blit(titleText.getText(), titleText.getTextPos())
+
             # initiate button
-            startButton = Button(screen, "hola", (0, 255, 0), 150, 450, 100, 50)
-            startButton.drawButton()
+            # hover mouse detector
+            if self.startButtonX + 100 > mouse[0] > self.startButtonX and self.startButtonY + 50 > mouse[1] > self.startButtonY:
+                startButton = Button(screen, "Are you sure?", (0, 150, 0), self.startButtonX, self.startButtonY, 100, 50, 8, 20, 20)
+                startButton.drawButton()
+            else:
+                startButton = Button(screen, "Start", (0, 255, 0), self.startButtonX, self.startButtonY, 100, 50, 35, 20, 20)
+                startButton.drawButton()
 
             pygame.display.flip()
             
