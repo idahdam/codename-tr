@@ -1,6 +1,7 @@
 import pygame, pygame.surface
 from needs.Text import Text
 from needs.Button import Button
+from StoryStart import StoryStart
 
 class MainWindow:
     def __init__(self):
@@ -25,6 +26,7 @@ class MainWindow:
             
             # initiate mouse
             mouse = pygame.mouse.get_pos()
+            click = pygame.mouse.get_pressed()
 
             screen = pygame.display.set_mode(self.backgroundSize)
             pygame.display.set_caption(self.title)
@@ -45,6 +47,14 @@ class MainWindow:
             if self.startButtonX + 100 > mouse[0] > self.startButtonX and self.startButtonY + 50 > mouse[1] > self.startButtonY:
                 startButton = Button(screen, "Are you sure?", (0, 150, 0), self.startButtonX, self.startButtonY, 100, 50, 8, 20, 20)
                 startButton.drawButton()
+
+                # click detector
+                if click[0] == 1:
+                    storyStart = StoryStart()
+                    # storyStart.printStart()
+
+                elif click[2] == 1:
+                    print('you right clicked the start button')
             else:
                 startButton = Button(screen, "Start", (0, 255, 0), self.startButtonX, self.startButtonY, 100, 50, 35, 20, 20)
                 startButton.drawButton()
