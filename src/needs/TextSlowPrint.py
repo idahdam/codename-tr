@@ -8,7 +8,7 @@ class TextSlowPrint:
         self.text = text
         self.font = pygame.font.SysFont(None, size)
         self.position = position
-        # self.textPrint = self.font.render(self.text, True, (255, 255, 255))
+        self.textPrint = self.font.render(self.text, True, (255, 255, 255))
 
     def getText(self):
         return self.textPrint
@@ -17,8 +17,8 @@ class TextSlowPrint:
         return self.position
 
     def blitText(self):
-        for letter in self.text:
-            textPrintSlow = self.font.render(letter, True, (255, 255, 255))
-            self.screen.blit(textPrintSlow, self.getTextPos())
-            time.sleep(0.5)
+        # for letter in self.text:
+        #     textPrintSlow = self.font.render(letter, True, (255, 255, 255))
+        self.screen.blit(self.getText(), self.getTextPos())
+            # time.sleep(0.5)
 

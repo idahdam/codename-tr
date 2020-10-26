@@ -65,6 +65,7 @@ class MainWindow:
 
                 elif click[2] == 1:
                     print('you right clicked the start button')
+                    
             else:
                 startButton = Button(screen, "Start", (0, 255, 0), self.startButtonX, self.startButtonY, 100, 50, 35, 20, 20)
                 startButton.drawButton()
