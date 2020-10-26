@@ -1,7 +1,13 @@
-import pygame, pygame.surface
+import pygame, pygame.surface, os, pygame.font
 from needs.Text import Text
 from needs.Button import Button
 from StoryStart import StoryStart
+
+# comment this thing below
+from doNotUploadThis import absolutePath
+
+# change absolutePath into os.getcwd()
+icon = pygame.image.load(absolutePath + '/images/basic-stuff/icon.png')
 
 class MainWindow:
     def __init__(self):
@@ -16,7 +22,6 @@ class MainWindow:
 
         self.start()
 
-
     def start(self):
         running = True
         while(running):
@@ -29,6 +34,8 @@ class MainWindow:
             click = pygame.mouse.get_pressed()
 
             screen = pygame.display.set_mode(self.backgroundSize)
+            
+            pygame.display.set_icon(icon)
             pygame.display.set_caption(self.title)
 
             # background
@@ -37,10 +44,13 @@ class MainWindow:
             background.fill(self.backgroundColor)
 
             # print title
-            titleText = Text("Codename Tr", (225, 150), 72)
+            titleText = Text(screen, "Codename Tr", (225, 150), 72)
 
             screen.blit(background, (0, 0))
-            screen.blit(titleText.getText(), titleText.getTextPos())
+
+            # blit text
+            titleText.blitText()
+
 
             # initiate button
             # hover mouse detector
@@ -50,8 +60,8 @@ class MainWindow:
 
                 # click detector
                 if click[0] == 1:
+                    running = False
                     storyStart = StoryStart()
-                    # storyStart.printStart()
 
                 elif click[2] == 1:
                     print('you right clicked the start button')
