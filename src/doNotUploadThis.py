@@ -1,1 +1,0 @@
-absolutePath = "C:/Users/idahdam/Documents/proyek pribadi/pythonlol/Codename TR/src"
